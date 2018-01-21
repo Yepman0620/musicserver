@@ -1,0 +1,15 @@
+<html>
+<body>
+<script>var myArray= 8;</script>
+<form action="/example/html5/demo_post.asp" method="post">
+  <input id="num1" type="hidden" name="fname" value=888><br />
+  <input id="btn" type="submit" value="提交" />
+<script>
+    document.getElementById("btn").onclick = function(){
+        document.getElementById("num1").value = 999
+    }
+</script>
+</form>
+
+</body>
+</html>
