@@ -4,8 +4,18 @@
 from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import HttpResponse
+from . import settings
+import logging 
+import subprocess 
 import os
-nas = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'nas')
+import string
+import shutil
+rootpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+nas = os.path.join(rootpath,'nas')
+staticpath = os.path.join(rootpath,'static')
+midipath = os.path.join(rootpath,'static/midi')
+midibackpath = os.path.join(rootpath,'static/midiback')
+print(midipath)
 def hello(request):
     context = {}
     context['hello']='hello World'
@@ -25,7 +35,37 @@ def music(request):
     context['hello']='hello World'
     return render(request,'index.html',context)
 def upload_midis(request):
+    context = {}
+    context['hello']='playwave'
     if request.method == "POST":
         midistart = request.POST.get("midistart",None)
-        print(midistart)
-        return HttpResponse(midistart)
+        midis = '--primer_melody='+midistart 
+        log = logging.getLogger("Core.Analysis.Processing")
+        if os.path.exists(midibackpath):
+            shutil.rmtree(midibackpath,True)
+        shutil.move(midipath,midibackpath)
+        os.mkdir(midipath)
+        INTERPRETER = "/usr/bin/python"
+        TIMIDITY = "/usr/bin/timidity"
+        print(midipath)
+        if not os.path.exists(INTERPRETER): 
+            log.error("Cannot find INTERPRETER at path \"%s\"." % INTERPRETER)  
+        processor = "/home/pingan/chen/magenta/magenta/models/performance_rnn/performance_rnn_generate.py"
+        cmd_2 = [INTERPRETER] + [processor] + ['--run_dir=/home/pingan/Desktop/light_music/light_music_cp'] + ['--config=performance'] + ['--num_outputs=1'] + ['--num_steps=6000'] + ['--output_dir=/home/pingan/workspace/musicserver/static/midi'] + [midis]
+        print(cmd_2)
+        outputs = subprocess.check_output(cmd_2, stderr=subprocess.STDOUT)
+        for root, dirs, files in os.walk(midipath):
+            print(files)
+        midifile=os.path.join(midipath,files[0])
+        print(midifile)
+        wavefile=os.path.join(midipath,'1.wav')
+        print(wavefile)
+        cmd_3 = [TIMIDITY] + [midifile] + ['-Ow'] + ['-o'] + [wavefile]
+        print(cmd_3)
+        outputs = subprocess.check_output(cmd_3, stderr=subprocess.STDOUT)
+        #outputs = outputs.split('\n')
+    return render(request,'wavplayer.html',context)
+def midi_player(request):
+    context = {}
+    context['hello']='midiplayer'
+    return render(request,'midiplayer.html',context)

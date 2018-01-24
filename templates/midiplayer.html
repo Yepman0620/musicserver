@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>MIDIjs - Home</title>
+		<style type="text/css">
+			.source_code { background-color: #bbbbff; color:black }	
+			.player { background-color: #bbbbff; color:black; border: 2px solid grey;}
+		</style>
+<h1>{{hello}}</h1>
+{% load staticfiles %}
+<script type='text/javascript' src="{%static 'js/midi.js'%}">src2="{%static 'midi/1.mid'%}"</script>
+
+<!--<script type='text/javascript' src="//www.midijs.net/lib/midi.js"></script>-->
+<a href="#" id="btn" onclick="MIDIjs.play();">Playmusic.mid</a>&nbsp; &nbsp;
+<script>
+    document.getElementById("btn").onclick = function(){
+        src="{%static 'js/midi.js'%}"
+        src2="{%static 'midi/1.mid'%}"
+        ///alert(src2)
+    }
+</script>
+--------------------------------------
+</head>
+	<body>
+		<div class="player">
+			<p>
+			<a href="#example" onclick="MIDIjs.play('static/midi/1.mid');">Play Rock the Jukebox (Alan Jackson)</a>&nbsp; &nbsp; 
+			<a href="#example" onclick="MIDIjs.play('/midi/bobby_sharp_unchain_my_heart.mid');">Play Unchain my Heart (Bobby Sharp)</a>&nbsp;  &nbsp;
+			<a href="#example" onclick="MIDIjs.play('/midi/hinematov.mid');">Play Hinematov (Reiner Oberbeck)</a>&nbsp; &nbsp;
+			<a href="#example" onclick="MIDIjs.play('/midi/barbara_streisand_woman_in_love.mid');">Play Woman in Love (Barbara Streisand)</a></p>
+			<p>
+			<a href="#" onclick="MIDIjs.stop();">Stop Playback</a></p>
+			
+			<div style="font-size: 71%;font-size: 71%">
+				MIDIjs status: <span id="MIDIjs.message" style="color: green">audioMethod: WebAudioAPI, sampleRate (Hz): 44100, audioBufferSize (Byte): 8192</span>
+				<div>
+					MIDIjs audio time (s): <span id="MIDIjs.audio_time" style="color: green">-</span></div>
+			</div>
+		</div>
+<script type="text/javascript">
+  var message_span = document.getElementById('MIDIjs.message');
+  message_span.innerHTML = MIDIjs.get_audio_status();
+
+  MIDIjs.message_callback = display_status;
+  function display_status(message) {
+     message_span.innerHTML = message;
+  };
+
+  var time_span = document.getElementById('MIDIjs.audio_time');
+  MIDIjs.player_callback = display_time;
+  function display_time(player_event) {
+     time_span.innerHTML = player_event.time;
+  };
+</script>		
+</body></html>

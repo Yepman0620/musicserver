@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^uploadFile/',view.upload_file),
     url(r'^music$',view.music),
     url(r'^uploadmidis/',view.upload_midis),
+    url(r'^midiplayer$',view.midi_player),
 ]

@@ -4,76 +4,76 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>钢琴汇报demo</title>
 {% load staticfiles %}
-<script src="{% static 'js/zzsc.js'%}"></script>
-<link rel="stylesheet" href="{% static 'css/zzsc.css'%}" type="text/css" media="all">
+<script src="static/js/zzsc.js"></script>
+<link rel="stylesheet" href="static/css/zzsc.css" type="text/css" media="all">
 </head>
 <body>
 <div id="all">
-    <h1 style="width:100%;text-align:center;">使用鼠标左键或键盘弹奏起始音</h1>
+    <h1 style="width:100%;text-align:center;">使用鼠标左键弹奏起始音</h1>
 	
 	<!--主要代码-->
     <div id="main"><script>var myArray= new Array();</script>
-        <div id="key60" class="key whiteKey">q<br>a<br>z
+        <div id="key60" class="key whiteKey">
         <script>
         document.getElementById("key60").onclick = function(){myArray.push(60);}
         </script>
         </div>
-        <div id="key62" class="key whiteKey"><br>s<br>x
+        <div id="key62" class="key whiteKey">
         <script>
         document.getElementById("key62").onclick = function(){myArray.push(62);}
         </script>
         </div>
-        <div id="key64" class="key whiteKey"><br>d<br>c
+        <div id="key64" class="key whiteKey">
         <script>
         document.getElementById("key64").onclick = function(){myArray.push(64);}
         </script>
         </div>
-        <div id="key65" class="key whiteKey">r<br>f<br>v
+        <div id="key65" class="key whiteKey">
         <script>
         document.getElementById("key65").onclick = function(){myArray.push(65);}
         </script>
         </div>
-        <div id="key67" class="key whiteKey"><br>g<br>b
+        <div id="key67" class="key whiteKey">
         <script>
         document.getElementById("key67").onclick = function(){myArray.push(67);}
         </script>
         </div>
-        <div id="key69" class="key whiteKey"><br>h<br>n
+        <div id="key69" class="key whiteKey">
         <script>
         document.getElementById("key69").onclick = function(){myArray.push(69);}
         </script>
         </div>
-        <div id="key71" class="key whiteKey"><br>j<br>m
+        <div id="key71" class="key whiteKey">
         <script>
         document.getElementById("key71").onclick = function(){myArray.push(71);}
         </script>
         </div>
-        <div id="key72" class="key whiteKey">i<br>k<br>,
+        <div id="key72" class="key whiteKey">
         <script>
         document.getElementById("key72").onclick = function(){myArray.push(72);}
         </script>
         </div>
-        <div id="key61" class="key blackKey">w
+        <div id="key61" class="key blackKey">
         <script>
         document.getElementById("key61").onclick = function(){myArray.push(61);}
         </script>
         </div>
-        <div id="key63" class="key blackKey">e
+        <div id="key63" class="key blackKey">
         <script>
         document.getElementById("key63").onclick = function(){myArray.push(63);}
         </script>
         </div>
-        <div id="key66" class="key blackKey">t
+        <div id="key66" class="key blackKey">
         <script>
         document.getElementById("key66").onclick = function(){myArray.push(66);}
         </script>
         </div>
-        <div id="key68" class="key blackKey">y
+        <div id="key68" class="key blackKey">
         <script>
         document.getElementById("key68").onclick = function(){myArray.push(68);}
         </script>
         </div>
-        <div id="key70" class="key blackKey">u
+        <div id="key70" class="key blackKey">
         <script>
         document.getElementById("key70").onclick = function(){myArray.push(70);}
         </script>
@@ -91,7 +91,7 @@
     </form>
     <div id="comment">
         <h3>弹奏方法</h3>
-        <p>使用鼠标左键点击钢琴键，或者键入钢琴键上输入的键盘文字。<br>钢琴键值会回传至模型进行音乐创作<br>支持浏览器：IE 9以上、Firefox 10以上、Chrome 17以上</p>
+        <p>使用鼠标左键点击钢琴键。<br>钢琴键值会回传至模型进行音乐创作<br>支持浏览器：IE 9以上、Firefox 10以上、Chrome 17以上</p>
 　　</div>
 </div>
 
